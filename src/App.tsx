@@ -1,40 +1,27 @@
-import { ChangeEventHandler, MouseEventHandler, useState } from "react"
-import { Button } from "@mui/material"
+import { AppShell, MantineProvider } from "@mantine/core"
+import { BrowserRouter } from "react-router-dom"
+import { Header } from "./components/Header"
+import { Main } from "./components/Main"
 
-function App() {
-  const [todos, setTodos] = useState(["one", "two", "three"])
-  const [input, setInput] = useState(" ")
-
-  const handleInputChange: ChangeEventHandler<HTMLInputElement> = e => {
-    setInput(e.target.value)
-  }
-  const addTodos: MouseEventHandler<HTMLButtonElement> = e => {
-    e.preventDefault()
-    setTodos([...todos, input])
-    setInput(" ")
-  }
+const App = () => {
   return (
-    <div className="App">
-      <h1>HEllOWolRD</h1>
-      <form>
-        <input
-          value={input}
-          onChange={handleInputChange}
-        />
-        <Button
-          type="submit"
-          variant="contained"
-          onClick={addTodos}
+    <BrowserRouter>
+      <MantineProvider
+        withGlobalStyles
+        withNormalizeCSS
+        theme={{ colorScheme: "dark" }}
+      >
+        <AppShell
+          padding="md"
+          header={<Header />}
+          sx={{
+            height: "100vh",
+          }}
         >
-          ADDTODO
-        </Button>
-      </form>
-      <ul>
-        {todos.map(todo => (
-          <li>{todo}</li>
-        ))}
-      </ul>
-    </div>
+          <Main />
+        </AppShell>
+      </MantineProvider>
+    </BrowserRouter>
   )
 }
 
