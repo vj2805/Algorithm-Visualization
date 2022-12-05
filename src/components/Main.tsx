@@ -1,17 +1,22 @@
+import { Box } from "@mantine/core"
 import { Route, Routes } from "react-router-dom"
-import { PathFindingVisualizer } from "../pages/PathFindingVisualizer"
+import PathfindingVisualizer from "../pages/PathfindingVisualizer"
+import { SorterKjVF } from "../pages/SorterKjVF.jsx"
 
-export const Main = () => {
-  return (
+export const Main = () => (
+  <Box
+    pos="relative"
+    h="100%"
+  >
     <Routes>
       <Route
         path="/"
-        element={<p>Sorting</p>}
+        element={<SorterKjVF />}
       />
       <Route
         path="/path-finding-visualizer"
-        element={<PathFindingVisualizer />}
+        element={<PathfindingVisualizer />}
       />
     </Routes>
-  )
-}
+  </Box>
+)

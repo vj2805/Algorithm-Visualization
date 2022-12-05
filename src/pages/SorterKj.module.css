@@ -1,0 +1,84 @@
+.wrapper {
+  background-color: rgb(44, 43, 42);
+  height: 82vh;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.selection {
+  background-color: black;
+  padding: 1.5em;
+  border-radius: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: antiquewhite;
+}
+
+.theme {
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+  padding: 1em;
+}
+
+.theme input {
+  appearance: none;
+  outline: 0.2em solid var(--color);
+  outline-offset: 0.2em;
+  border-radius: 100%;
+  padding: 1em;
+}
+
+.theme input:checked {
+  background-color: var(--color);
+}
+
+.count,
+.range {
+  display: flex;
+  gap: 0.3em;
+  align-items: baseline;
+}
+
+.count input,
+.range input {
+  padding: 0.5em;
+  outline: none;
+  appearance: none;
+  width: 6em;
+}
+
+.algorithm select {
+  padding: 0.5em;
+  border-radius: 1em;
+}
+
+.selection button {
+  padding: 0.5em;
+  border-radius: 1em;
+}
+
+.display {
+  margin-top: 2em;
+  background-color: black;
+  border-radius: 1em;
+  padding: 1.5em;
+  flex: 1;
+  gap: 0.5em;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.spike {
+  background-color: var(--color);
+  width: 1em;
+  border-radius: 0.2em;
+  height: calc(var(--height) * 1%);
+}
+
+select:disabled {
+  background-color: white;
+}
