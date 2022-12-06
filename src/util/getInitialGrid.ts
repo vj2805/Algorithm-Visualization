@@ -1,15 +1,17 @@
 import {
   FINISH_NODE_COL,
   FINISH_NODE_ROW,
+  MAX_COLS,
+  MAX_ROWS,
   START_NODE_COL,
   START_NODE_ROW,
 } from "./constants"
 
-const getInitialGrid = (rows: number, cols: number) => {
+const getInitialGrid = () => {
   const grid = []
-  for (let row = 0; row < 20; row++) {
+  for (let row = 0; row < 30; row++) {
     const currentRow = []
-    for (let col = 0; col < 67; col++) {
+    for (let col = 0; col < 70; col++) {
       currentRow.push(createNode(col, row))
     }
     grid.push(currentRow)

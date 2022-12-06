@@ -1,12 +1,5 @@
-import { Box, createStyles } from "@mantine/core"
-import { useViewportSize } from "@mantine/hooks"
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react"
+import { Box, Button, Group, Stack } from "@mantine/core"
+import { useCallback, useState } from "react"
 import { dijkstra, getNodesInShortestPathOrder } from "../algorithm/dijkstra"
 import DisplayNode from "../components/Node"
 import {
@@ -17,27 +10,10 @@ import {
 } from "../util/constants"
 import getInitialGrid, { Grid, Node } from "../util/getInitialGrid"
 import getNewGridWithWallToggled from "../util/getNewGridWithWallToggled"
-import "./PathfindingVisualizer.css"
-
-const useStyles = createStyles(() => ({
-  grid: {
-    margin: "auto",
-    position: "absolute",
-    right: "0px",
-    width: "78%",
-    height: "100%",
-    border: "3px solid #323332",
-    padding: "9px",
-    maxHeight: "100%",
-  },
-}))
 
 function PathfindingVisualizer() {
-  const { classes } = useStyles()
-  const gridRef = useRef<HTMLDivElement>(null)
-  const [grid, setGrid] = useState<Grid>([])
+  const [grid, setGrid] = useState<Grid>(getInitialGrid)
   const [mouseIsPressed, setMouseIsPressed] = useState<boolean>(false)
-
   const handleMouseDown = useCallback(
     (row: number, col: number) => {
       const newGrid = getNewGridWithWallToggled(grid, row, col)
@@ -73,39 +49,35 @@ function PathfindingVisualizer() {
     const visitedNodesInOrder = dijkstra(grid, startNode, finishNode)!
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode)
     reset(visitedNodesInOrder, nodesInShortestPathOrder)
-    setGrid(
-      getInitialGrid(
-        Math.floor((gridRef.current?.clientHeight ?? 0) / 15),
-        Math.floor((gridRef.current?.clientWidth ?? 0) / 15)
-      )
-    )
+    setGrid(getInitialGrid())
   }, [grid])
 
-  useLayoutEffect(() => {
-    setGrid(
-      getInitialGrid(
-        Math.floor((gridRef.current?.clientWidth ?? 0) / 15),
-        Math.floor((gridRef.current?.clientHeight ?? 0) / 15)
-      )
-    )
-  }, [gridRef.current?.clientHeight, gridRef.current?.clientWidth])
-  console.log(grid?.length, grid?.[0]?.length)
   return (
-    <div className="container">
-      <div className="buttons">
-        <button onClick={visualizeDijkstra}>
-          Visualize Dijkstra's Algorithm
-        </button>
-        <button onClick={resetGrid}>reset</button>
-      </div>
-      <Box
-        ref={gridRef}
-        className={classes.grid}
+    <Group
+      h="100%"
+      sx={{ gap: 0 }}
+    >
+      <Stack
+        mx="xs"
+        py="xs"
         h="100%"
+        justify="flex-start"
+      >
+        <Button onClick={visualizeDijkstra}>
+          Visualize Dijkstra's Algorithm
+        </Button>
+        <Button onClick={resetGrid}>reset</Button>
+      </Stack>
+      <Stack
+        mx="xs"
+        h="100%"
+        align="center"
+        justify="center"
+        sx={{ gap: 0, flexGrow: 1 }}
       >
         {grid.map((row, rowIdx) => {
           return (
-            <div key={rowIdx}>
+            <Box key={rowIdx}>
               {row.map((node, nodeIdx) => {
                 const { row, col, isFinish, isStart, isWall } = node
                 return (
@@ -122,11 +94,11 @@ function PathfindingVisualizer() {
                   ></DisplayNode>
                 )
               })}
-            </div>
+            </Box>
           )
         })}
-      </Box>
-    </div>
+      </Stack>
+    </Group>
   )
 }
 

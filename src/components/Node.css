@@ -3,6 +3,7 @@
   height: 15px;
   outline: 1px solid rgb(65, 55, 55);
   display: inline-block;
+
 }
 
 .node-finish {
@@ -52,7 +53,7 @@
 
   100% {
     transform: scale(1);
-    background-color: rgba(196, 0, 218, 0.75);
+    background-color: rgba(24, 4, 56, 0.75);
   }
 }
 @keyframes reset {
