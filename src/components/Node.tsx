@@ -11,7 +11,7 @@ type NodeProps = {
   row: number
 }
 
-const DisplayNode = ({
+export const DisplayNode = ({
   col,
   isFinish,
   isStart,
@@ -38,5 +38,3 @@ const DisplayNode = ({
     ></div>
   )
 }
-
-export default DisplayNode

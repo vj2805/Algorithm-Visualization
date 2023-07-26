@@ -15,6 +15,7 @@ export const dijkstra = (grid: Grid, startNode: Node, finishNode: Node) => {
     updateUnvisitedNeighbors(closestNode, grid)
   }
 }
+
 export const getNodesInShortestPathOrder = (finishNode: Node) => {
   const nodesInShortestPathOrder = []
   let currentNode: Node | null = finishNode

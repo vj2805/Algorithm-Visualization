@@ -4,7 +4,7 @@ import {
   SegmentedControl,
   Title,
 } from "@mantine/core"
-import { ChangeEventHandler, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 export const Header = () => {

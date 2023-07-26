@@ -1,7 +1,7 @@
 import { Box, Button, Group, Stack } from "@mantine/core"
 import { useCallback, useState } from "react"
 import { dijkstra, getNodesInShortestPathOrder } from "../algorithm/dijkstra"
-import DisplayNode from "../components/Node"
+import { DisplayNode } from "../components/Node"
 import {
   FINISH_NODE_COL,
   FINISH_NODE_ROW,
@@ -11,7 +11,7 @@ import {
 import getInitialGrid, { Grid, Node } from "../util/getInitialGrid"
 import getNewGridWithWallToggled from "../util/getNewGridWithWallToggled"
 
-function PathfindingVisualizer() {
+export function PathfindingVisualizer() {
   const [grid, setGrid] = useState<Grid>(getInitialGrid)
   const [mouseIsPressed, setMouseIsPressed] = useState<boolean>(false)
   const handleMouseDown = useCallback(
